@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "k8s": "^0.4.15"
+  },
+  "name": "icecast-stats",
+  "version": "1.0.0",
+  "description": "Stats aggregator from Icecast in a k8s cluster to InfluxDb",
+  "main": "aggregator.js",
+  "repository": "git@git.ownweb.fr:ovp/icecast-stats.git",
+  "author": "Nicolas Perraut <n.perraut@gmail.com>",
+  "license": "GPL-3.0"
+}
