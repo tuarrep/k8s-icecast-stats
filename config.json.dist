@@ -1,0 +1,11 @@
+{
+  "k8s": {
+    "apiConfig": {
+      "endpoint": "",
+      "version": "",
+      "strictSSL": ""
+    },
+    "inCluster": "",
+    "namespace": ""
+  }
+}
