@@ -10,5 +10,6 @@
   "author": "Nicolas Perraut <n.perraut@gmail.com>",
   "license": "GPL-3.0",
   "scripts": {
-    "start": "node aggregator.js",
+    "start": "node aggregator.js"
+  }
 }
