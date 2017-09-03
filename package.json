@@ -8,5 +8,7 @@
   "main": "aggregator.js",
   "repository": "git@git.ownweb.fr:ovp/icecast-stats.git",
   "author": "Nicolas Perraut <n.perraut@gmail.com>",
-  "license": "GPL-3.0"
+  "license": "GPL-3.0",
+  "scripts": {
+    "start": "node aggregator.js",
 }
