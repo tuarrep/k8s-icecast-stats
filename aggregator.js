@@ -41,18 +41,22 @@ const buildConfig = () => {
     config.k8s.apiConfig.endpoint = config.k8s.inCluster ? 'https://' + process.env.KUBERNETES_SERVICE_HOST + ':' + process.env.KUBERNETES_PORT_443_TCP_PORT : 'http://localhost:8001'
   }
 
-  if(process.env.API_VERSION) {
+  if (process.env.API_VERSION) {
     config.k8s.apiConfig.version = process.env.API_VERSION
   } else if (config.k8s.apiConfig.version == undefined) {
     config.k8s.apiConfig.version = '/api/v1'
+  }
+
+  if (process.env.STRICT_SSL) {
+    config.k8.apiConfig.strictSSL = process.env.STRICT_SSL == 'true' ? true: false
+  } else if (config.k8s.apiConfig.strictSSL == undefined) {
+    config.k8s.apiConfig.strictSSL = false
   }
 
   return config
 }
 
 const config = buildConfig()
-
-console.log(config)
 
 if (!config) {
   process.exit(1)
