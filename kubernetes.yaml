@@ -1,0 +1,50 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    k8s-app: stats-aggregator
+  name: stats-aggregator
+  namespace: icecast
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: stats-aggregator
+  labels:
+    k8s-app: stats-aggregator
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: stats-aggregator
+  namespace: icecast
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    role: stats-aggregator-pod
+  name: stats-aggregator
+  namespace: icecast
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      role: stats-aggregator-pod
+  template:
+    metadata:
+      labels:
+        role: stats-aggregator-pod
+    spec:
+      containers:
+      - env:
+        - name: IN_CLUSTER
+          value: "true"
+        - name: MONITOR_NAMESPACE
+          value: icecast
+        image: omaradio/k8s-icecast-stats:latest
+        name: stats-aggregator
+      serviceAccountName: stats-aggregator
